@@ -1,0 +1,47 @@
+int _ABVAR_1_a;
+
+void blinken();
+
+void setup()
+{
+pinMode( 8, INPUT);
+pinMode( 9, INPUT);
+pinMode( 7 , OUTPUT);
+pinMode( 5 , OUTPUT);
+pinMode( 6 , OUTPUT);
+}void loop()
+{
+digitalWrite( 7 , HIGH );
+if (digitalRead(9))
+{
+  blinken();
+  digitalWrite( 6 , HIGH );
+  digitalWrite( 7 , LOW );
+  delay( 9999999 );
+}
+if (digitalRead(8))
+{
+  blinken();
+  digitalWrite( 5 , HIGH );
+  digitalWrite( 7 , LOW );
+  delay( 9999999 );
+}
+}
+void blinken(){
+digitalWrite( 5 , HIGH );
+digitalWrite( 6 , HIGH );
+delay( 50 );
+digitalWrite( 5 , LOW );
+digitalWrite( 6 , LOW );
+delay( 50 );
+	for (_ABVAR_1_a=1; _ABVAR_1_a<= ( 5 ); ++_ABVAR_1_a ){
+      digitalWrite( 5 , HIGH );
+      delay( 150 );
+      digitalWrite( 5 , LOW );
+      delay( 150 );
+      digitalWrite( 6 , HIGH );
+      delay( 150 );
+      digitalWrite( 6 , LOW );
+      delay( 150 );
+    }
+}
