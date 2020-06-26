@@ -1,47 +1,60 @@
-int _ABVAR_1_a;
+//Autor: Maria Zovko 
+//Datum: 26.06.2020
 
-void blinken();
+int x;
+#include <LiquidCrystal.h>
 
-void setup()
-{
+const int rs = 12, en = 11, d4 = 4, d5 = 3, d6 = 2, d7 = 10; 
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+
+void setup(){
+  
 pinMode( 8, INPUT);
 pinMode( 9, INPUT);
 pinMode( 7 , OUTPUT);
 pinMode( 5 , OUTPUT);
 pinMode( 6 , OUTPUT);
-}void loop()
-{
+lcd.begin(16, 2);
+}
+void loop(){
+  
 digitalWrite( 7 , HIGH );
-if (digitalRead(9))
-{
+if (digitalRead(9)){
+  
   blinken();
   digitalWrite( 6 , HIGH );
   digitalWrite( 7 , LOW );
-  delay( 9999999 );
+  lcd.print("Spieler 1 war schneller!");
+  delay(5555);
+  lcd.clear();
 }
-if (digitalRead(8))
-{
+if (digitalRead(8)){
+  
   blinken();
   digitalWrite( 5 , HIGH );
   digitalWrite( 7 , LOW );
-  delay( 9999999 );
+  lcd.print("Spieler 2 war schneller!");
+  delay(5555);
+  lcd.clear(); 
 }
 }
 void blinken(){
-digitalWrite( 5 , HIGH );
-digitalWrite( 6 , HIGH );
-delay( 50 );
+  
+digitalWrite( 5, HIGH );
+digitalWrite( 6, HIGH );
+digitalWrite( 7, LOW);
+delay(5);
 digitalWrite( 5 , LOW );
 digitalWrite( 6 , LOW );
 delay( 50 );
-	for (_ABVAR_1_a=1; _ABVAR_1_a<= ( 5 ); ++_ABVAR_1_a ){
+	for (x=1; x<= ( 5 ); ++x ){
       digitalWrite( 5 , HIGH );
-      delay( 150 );
+      delay(15);
       digitalWrite( 5 , LOW );
-      delay( 150 );
+      delay(15);
       digitalWrite( 6 , HIGH );
-      delay( 150 );
+      delay(15);
       digitalWrite( 6 , LOW );
-      delay( 150 );
+      delay(15);
     }
 }
