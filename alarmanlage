@@ -1,3 +1,6 @@
+//Author: Maria Zovko
+//Date: 12.05.2020
+
 #include <LiquidCrystal.h>
 int sensor = 13; 
 int led1 = 10; 
