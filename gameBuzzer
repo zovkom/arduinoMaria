@@ -1,36 +1,38 @@
 //Autor: Maria Zovko 
 //Datum: 26.06.2020
-
 int x;
-#include <LiquidCrystal.h>
 
+#include <LiquidCrystal.h>
+//initialize lcd. 
 const int rs = 12, en = 11, d4 = 4, d5 = 3, d6 = 2, d7 = 10; 
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
 void setup(){
-  
+//set Inputs and Outputs
 pinMode( 8, INPUT);
 pinMode( 9, INPUT);
 pinMode( 7 , OUTPUT);
 pinMode( 5 , OUTPUT);
 pinMode( 6 , OUTPUT);
+//  start lcd. 
 lcd.begin(16, 2);
 }
+
 void loop(){
-  
+
 digitalWrite( 7 , HIGH );
+//if the first button was clicked. 
 if (digitalRead(9)){
-  
-  blinken();
-  digitalWrite( 6 , HIGH );
+  blinken(); //start function blinken(). 
+  digitalWrite( 6 , HIGH ); 
   digitalWrite( 7 , LOW );
   lcd.print("Spieler 1 war schneller!");
-  delay(5555);
-  lcd.clear();
+  delay(5555); 
+  lcd.clear(); 
 }
+// if second button was clicked. 
 if (digitalRead(8)){
-  
-  blinken();
+  blinken(); //start function blinken(). 
   digitalWrite( 5 , HIGH );
   digitalWrite( 7 , LOW );
   lcd.print("Spieler 2 war schneller!");
@@ -38,15 +40,18 @@ if (digitalRead(8)){
   lcd.clear(); 
 }
 }
+
 void blinken(){
-  
+//for tension start first both led. 
 digitalWrite( 5, HIGH );
 digitalWrite( 6, HIGH );
 digitalWrite( 7, LOW);
 delay(5);
+//stop both of them. 
 digitalWrite( 5 , LOW );
 digitalWrite( 6 , LOW );
 delay( 50 );
+  //here starts the blinking process. 
 	for (x=1; x<= ( 5 ); ++x ){
       digitalWrite( 5 , HIGH );
       delay(15);
