@@ -1,0 +1,100 @@
+// Author: Luca Stöhr
+// Date: 01.07.2020
+
+#include <Adafruit_NeoPixel.h>
+#define NOTE_F1  44
+
+int NeoPixel1 = 3;
+int NeoPixel2 = 2;
+
+int Numpixels1 = 22;
+int Numpixels2 = 16;
+Adafruit_NeoPixel Pixels1 = Adafruit_NeoPixel(Numpixels1, NeoPixel1, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel Pixels2 = Adafruit_NeoPixel(Numpixels2, NeoPixel2, NEO_GRB + NEO_KHZ800);
+int Lamp1 = 8;
+int Lamp2 = 9;
+int Lamp3 = 10;
+int Lamp4 = 11;
+int Lamp5 = 12;
+int Lamp6 = 13;
+int Brightness = 255;
+
+int Buzzer1 = 5;
+int Buzzer2 = 6;
+int Buzzer3 = 7;
+
+int Button = 4;
+
+int note = NOTE_F1;
+int delayval = 100; // timing delay in milliseconds
+int ButtonState = 0;
+int redColor = 0;
+int greenColor = 0;
+int blueColor = 0;
+
+void setup() {
+  pinMode(Buzzer1, OUTPUT);
+  pinMode(Buzzer2, OUTPUT);
+  pinMode(Buzzer3, OUTPUT);
+  
+  pinMode(Lamp1, OUTPUT);
+  pinMode(Lamp2, OUTPUT);
+  pinMode(Lamp3, OUTPUT);
+  pinMode(Lamp4, OUTPUT);
+  pinMode(Lamp5, OUTPUT);
+  pinMode(Lamp6, OUTPUT);
+  pinMode(Button, INPUT);  
+}
+
+void loop() {
+  
+  ButtonState = digitalRead(Button);
+ 
+    // if the button is pressed, play music and start lightshow
+    if (ButtonState == HIGH) {
+      setColor();
+      playMusic();
+      setColor();
+  	  startPixelShow();
+    }
+}
+
+
+// picks random values to set for RGB
+void setColor(){
+  redColor = random(0, 255);
+  greenColor = random(0,255);
+  blueColor = random(0, 255);
+}
+
+void startPixelShow(){
+  for (int i=0; i < Numpixels1; i++) {
+      // pixels.Color takes RGB values, from 0,0,0 up to 255,255,255
+      Pixels1.setPixelColor(i, Pixels1.Color(redColor, greenColor, blueColor));
+      Pixels1.show();
+    }
+}
+
+//
+void playMusic(){
+  	analogWrite(Lamp1, Brightness);
+  	analogWrite(Lamp2, Brightness);
+  	Pixels2.fill(Pixels2.Color(redColor, greenColor, blueColor));
+  	Pixels2.show();
+	tone(Buzzer1, 500, 100);
+  	analogWrite(Lamp1, 0);
+  	analogWrite(Lamp2, 0);
+  	delay(700);
+  	analogWrite(Lamp3, Brightness);
+  	analogWrite(Lamp4, Brightness);
+  	tone(Buzzer2, 700, 100);
+  	analogWrite(Lamp3, 0);
+  	analogWrite(Lamp4, 0);
+  	delay(400);
+  	analogWrite(Lamp5, Brightness);
+  	analogWrite(Lamp6, Brightness);
+	tone(Buzzer3, 300, 20);
+  	analogWrite(Lamp5, 0);
+  	analogWrite(Lamp6, 0);
+  	delay(400);	
+}
