@@ -1,16 +1,23 @@
-// Author: Luca Stöhr
+// Author: Maria Zovko
 // Date: 30.06.2020
 
 #include <Keypad.h>
+//initializing the 4 Piezo's
+int Buzzer1 = 6;
+int Buzzer2 = 7;
+int Buzzer3 = 8;
+int Buzzer4 = 9;
+// initializing which are column and which rows. 
 const byte COLS = 4; 
 const byte ROWS = 4; 
+//initializing the whole keyPad with all buttons. 
 char hexaKeys[ROWS][COLS]={
 {'1','4','7','*'},
 {'2','5','8','0'},
 {'3','6','9','#'},
 {'A','B','C','D'}
 };
-
+//initializing the rows and cols to the ports. 
 byte colPins[COLS] = {13,12,11,10};
 byte rowPins[ROWS] = {5,4,3,2};
 char Taste;
@@ -18,64 +25,65 @@ Keypad Tastenfeld = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
 int pos = 0;
 
 void setup(){
-  
+  // setup the outputs and inputs. 
   Serial.begin(9600);
-  pinMode(8, OUTPUT);
-  pinMode(6, OUTPUT);
-  pinMode(7, OUTPUT);
+  pinMode(Buzzer1, OUTPUT);
+  pinMode(Buzzer2, OUTPUT);
+  pinMode(Buzzer3, OUTPUT);
+  pinMode(Buzzer4, OUTPUT);
 }
 
 void loop(){
-  
+  // get which key was pressed. 
   Taste = Tastenfeld.getKey(); 
-  if (Taste){
+  if (Taste){ // if a key was pressed. 
     if (Taste =='1') {
-      tone(6, 261, 200); 
+      tone(Buzzer3, 261, 200); //1.which buzzer should play, 2. on which frequence & 3. for how long. 
       delay(300); 
     } else if (Taste=='2'){
-      tone(7, 294, 200); 
+      tone(Buzzer2, 294, 200); 
       delay(300); 
     }else if (Taste=='3'){
-      tone(8, 329, 200); 
+      tone(Buzzer1, 329, 200); 
       delay(300); 
     }else if (Taste=='A'){
-      tone(6, 349, 200); 
+      tone(Buzzer4, 349, 200); 
       delay(300); 
     }else if (Taste=='4'){
-      tone(7, 392, 200); 
+      tone(Buzzer3, 392, 200); 
       delay(300); 
     }else if (Taste=='5'){
-      tone(8, 440, 200); 
+      tone(Buzzer2, 440, 200); 
       delay(300); 
     }else if (Taste=='6'){
-      tone(6, 493, 200); 
+      tone(Buzzer1, 493, 200); 
       delay(300); 
     }else if (Taste=='B'){
-      tone(7, 523, 200); 
+      tone(Buzzer4, 523, 200); 
       delay(300); 
     }else if (Taste=='7'){
-      tone(8, 563, 200); 
+      tone(Buzzer3, 563, 200); 
       delay(300); 
     }else if (Taste=='8'){
-      tone(6, 603, 200); 
+      tone(Buzzer2, 603, 200); 
       delay(300); 
     }else if (Taste=='9'){
-      tone(7, 643, 200); 
+      tone(Buzzer1, 643, 200); 
       delay(300); 
     }else if (Taste=='C'){
-      tone(8, 693, 200); 
+      tone(Buzzer4, 693, 200); 
       delay(300); 
     }else if (Taste=='*'){
-      tone(6, 733, 200); 
+      tone(Buzzer3, 733, 200); 
       delay(300); 
     }else if (Taste=='0'){
-      tone(7, 783, 200); 
+      tone(Buzzer2, 783, 200); 
       delay(300); 
     }else if (Taste=='#'){
-      tone(8, 823, 200); 
+      tone(Buzzer1, 823, 200); 
       delay(300); 
     }else if (Taste=='D'){
-      tone(6, 873, 200); 
+      tone(Buzzer4, 873, 200); 
       delay(300); 
     }
   }
